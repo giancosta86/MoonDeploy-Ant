@@ -74,8 +74,8 @@ public class AppDescriptor extends OsSettingsTask {
         this.name = name;
     }
 
-    public void setAppVersion(String appVersion) {
-        this.appVersion = appVersion;
+    public void setVersion(String version) {
+        this.appVersion = version;
     }
 
     public void setPublisher(String publisher) {
