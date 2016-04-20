@@ -164,25 +164,32 @@ public class AppDescriptor extends OsSettingsTask {
                 .add("Description", description)
 
                 .add("SkipPackageLevels", skipPackageLevels)
-                .add("SkipUpdateCheck", skipUpdateCheck)
+                .add("SkipUpdateCheck", skipUpdateCheck);
 
-                .add("SupportedOS", getSupportedOperatingSystemsBuilder())
 
-                .add("OS", getOperatingSystemsBuilder());
+        JsonArray supportedOperatingSystems = getSupportedOperatingSystems();
+
+        if (!supportedOperatingSystems.isEmpty()) {
+            descriptorBuilder = descriptorBuilder.add("SupportedOS", supportedOperatingSystems);
+        }
+
 
         writeJsonOsSettings(descriptorBuilder);
+
+
+        descriptorBuilder = descriptorBuilder.add("OS", getOperatingSystemsBuilder());
 
         return descriptorBuilder.build();
     }
 
 
-    private JsonArrayBuilder getSupportedOperatingSystemsBuilder() {
-        JsonArrayBuilder supportedOperatingSystemsBuilder =
+    private JsonArray getSupportedOperatingSystems() {
+        JsonArrayBuilder resultBuilder =
                 Json.createArrayBuilder();
 
-        supportedOperatingSystems.forEach(supportedOs -> supportedOperatingSystemsBuilder.add(supportedOs.getName()));
+        supportedOperatingSystems.forEach(supportedOs -> resultBuilder.add(supportedOs.getName()));
 
-        return supportedOperatingSystemsBuilder;
+        return resultBuilder.build();
     }
 
 
