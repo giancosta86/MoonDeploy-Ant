@@ -18,5 +18,4 @@
   ===========================================================================
 */
 
-rootProject.name = 'Moondeploy-Ant'
-
+rootProject.name = 'MoonDeploy-Ant'
