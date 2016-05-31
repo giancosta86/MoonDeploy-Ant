@@ -29,8 +29,8 @@ buildscript {
 
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.1'
-        classpath 'info.gianlucacosta.aurora:aurora:4.1'
+        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.2'
+        classpath 'info.gianlucacosta.aurora:aurora:5.1'
     }
 }
 
@@ -41,19 +41,35 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
+
 group 'info.gianlucacosta.moondeploy'
 archivesBaseName = 'moondeploy-ant'
-version '3.2'
+version '3.3'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
 
 description = 'MoonDeploy - Ant tasks'
 
 ext.facebookPage = "https://www.facebook.com/MoonDeploy"
+
+
+dependencies {
+    compile 'org.apache.ant:ant:1.9.6'
+    compile 'javax.json:javax.json-api:1.0'
+}
+
+
+moonLicense {
+    license = apache2
+
+    productInfo {
+        productName = "MoonDeploy - Ant"
+        inceptionYear = 2016
+        copyrightHolder = "Gianluca Costa"
+    }
+}
+
 
 aurora {
     gitHubUser = 'giancosta86'
@@ -70,20 +86,4 @@ aurora {
 
         labels = ['MoonDeploy', 'Ant', 'tasks', 'descriptors', 'generate', 'automated']
     }
-}
-
-
-moonLicense {
-    license = apache2
-
-    productInfo {
-        productName = "MoonDeploy - Ant"
-        inceptionYear = 2016
-        copyrightHolder = "Gianluca Costa"
-    }
-}
-
-dependencies {
-    compile 'org.apache.ant:ant:1.9.6'
-    compile 'javax.json:javax.json-api:1.0'
 }
